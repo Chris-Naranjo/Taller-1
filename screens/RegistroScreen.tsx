@@ -35,7 +35,7 @@ export default function RegistroScreen( {navigation} : any) {
 
   return (
     <View>
-      <Image source={require("../assets/Registro.jpeg")} 
+      <Image source={require("../assets/Stage01.png")} 
       style={styles.Image} 
       />
       <Text>RegistroScreen</Text>

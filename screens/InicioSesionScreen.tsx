@@ -95,9 +95,9 @@ const styles = StyleSheet.create({
   },
   backgroundImage: {
     flex: 1,
-    width: "80%",
+    width: "95%",
     height: "90%",
-    resizeMode: "center",
+    resizeMode: "cover",
     justifyContent: "center",
     alignItems: "center",
   },
