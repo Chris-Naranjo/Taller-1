@@ -34,8 +34,8 @@ function MyStack() {
 
 export default function MainNavigators() {
   return (
-    <MainNavigators>
+    <NavigationContainer>
       <MyStack/>
-    </MainNavigators>
+    </NavigationContainer>
   )
 }
