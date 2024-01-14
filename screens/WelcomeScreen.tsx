@@ -59,8 +59,7 @@ const styles = StyleSheet.create({
   },
   txtBtn: {
     color: "#fff",
-    fontFamily: "pixel",
-    fontSize: 30,
+    fontSize: 25,
     fontWeight:'bold',
     textAlign:'center'
   },
