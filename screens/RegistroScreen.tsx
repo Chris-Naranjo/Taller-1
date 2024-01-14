@@ -17,7 +17,7 @@ export default function RegistroScreen( {navigation} : any) {
         // Signed up 
         const user = userCredential.user;
 
-        navigation.navigate('Login')
+        navigation.navigate('Inicio Sesion')
         
         //console.log('Registro exitoso')
       })

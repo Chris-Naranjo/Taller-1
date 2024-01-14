@@ -7,6 +7,7 @@ import RegistroScreen from '../screens/RegistroScreen';
 import PuntajeScreen from '../screens/PuntajeScreen';
 import WelcomeScreen from '../screens/WelcomeScreen';
 import { NavigationContainer } from '@react-navigation/native';
+import JuegoScreen from '../screens/JuegoScreen';
 
 const Tabs= createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -14,7 +15,7 @@ const Stack = createStackNavigator();
 function MyTabs(){
     return(
     <Tabs.Navigator>
-   <Tabs.Screen name="Inicio Sesión" component={InicioSesionScreen}/>
+   <Tabs.Screen name="Inicio Sesion" component={InicioSesionScreen}/>
    <Tabs.Screen name="Registarse" component={RegistroScreen}/>
    <Tabs.Screen name="Puntaje" component={PuntajeScreen}/>
     </Tabs.Navigator>
@@ -28,6 +29,7 @@ function MyStack() {
       <Stack.Navigator initialRouteName='Welcome'>
         <Stack.Screen name="Tabs" component={MyTabs} />
         <Stack.Screen name='Welcome' component={WelcomeScreen}/>
+        <Stack.Screen name='Juego' component={JuegoScreen}/>
       </Stack.Navigator>
     );
   }

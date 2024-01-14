@@ -24,7 +24,7 @@ export default function LoginScreen({ navigation }: any) {
         // Signed in
         const user = userCredential.user;
         console.log("Inicio de sesión exitoso:", user);
-        navigation.navigate("Welcome");
+        navigation.navigate("Juego");
         limpiar();
 
     
@@ -56,8 +56,9 @@ export default function LoginScreen({ navigation }: any) {
       <ImageBackground
        source={require("../assets/Sesion2.png")} 
       style={styles.backgroundImage} 
-      >
-      <Text style={{ fontSize: 90 }}>Login</Text>
+      />
+      <Text style={{ fontSize: 30, color:'blue', fontWeight:'bold', textAlign:'center', marginBottom:10  }}>Inicio de Sesión</Text>
+
       <TextInput
         placeholder="Ingrese correo"
         onChangeText={(texto) => setCorreo(texto)}
@@ -73,16 +74,7 @@ export default function LoginScreen({ navigation }: any) {
         style={styles.input}
       />
 
-      <Button title="Ingresar" onPress={() => login()} />
-
-      <Text onPress={() => navigation.navigate("Registro")}>
-        {" "}
-        👉 Regístrate aquí 👈
-      </Text>
-
-
-</ImageBackground>
-
+      <Button  title="Ingresar" onPress={() => login()} />
     </View>
   );
 }

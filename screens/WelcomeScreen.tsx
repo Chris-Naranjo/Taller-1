@@ -60,5 +60,8 @@ const styles = StyleSheet.create({
   txtBtn: {
     color: "#fff",
     fontFamily: "pixel",
+    fontSize: 30,
+    fontWeight:'bold',
+    textAlign:'center'
   },
 });
