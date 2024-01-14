@@ -54,9 +54,9 @@ export default function LoginScreen({ navigation }: any) {
     
     <View style={styles.container}>
       <ImageBackground
-       source={require("../assets/Iniciomosca.jpg")} 
+       source={require("../assets/Sesion2.png")} 
       style={styles.backgroundImage} 
-      />
+      >
       <Text style={{ fontSize: 90 }}>Login</Text>
       <TextInput
         placeholder="Ingrese correo"
@@ -79,6 +79,10 @@ export default function LoginScreen({ navigation }: any) {
         {" "}
         👉 Regístrate aquí 👈
       </Text>
+
+
+</ImageBackground>
+
     </View>
   );
 }
@@ -86,10 +90,15 @@ export default function LoginScreen({ navigation }: any) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    justifyContent:'center',
+    alignItems:'center'
   },
   backgroundImage: {
     flex: 1,
-    resizeMode: "cover",
+    width: "80%",
+    height: "90%",
+    resizeMode: "center",
+    justifyContent: "center",
     alignItems: "center",
   },
 

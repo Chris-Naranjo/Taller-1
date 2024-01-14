@@ -1,4 +1,4 @@
-import { View, Text, Button, StyleSheet, ImageBackground } from "react-native";
+import { View, Text, Button, StyleSheet, ImageBackground, Image } from "react-native";
 import React from "react";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
@@ -9,6 +9,7 @@ export default function WelcomeScreen({ navigation }: any) {
         source={require("../assets/fondoWelcome.jpg")}
         style={styles.backgroundImage}
       >
+      <Image source={require("../assets/inicioLetras.png")} style={styles.imgT} />
         
 
       <TouchableOpacity
@@ -17,6 +18,7 @@ export default function WelcomeScreen({ navigation }: any) {
       >
         <Text style={styles.txtBtn}>JUGAR</Text>
       </TouchableOpacity>
+
       </ImageBackground>
     </View>
   );
@@ -26,6 +28,12 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent:'center',
+    alignItems:'center'
+  },
+  imgT: {
+    width: '90%',
+    height: 50,
+    margin: 5
   
   },
     backgroundImage: {
@@ -38,8 +46,8 @@ const styles = StyleSheet.create({
   },
   btn: {
     color: "#fff",
-    height: 60,
-    width: "85%",
+    height: 80,
+    width: "95%",
     backgroundColor: "red",
     justifyContent: "center",
     alignItems: "center",
