@@ -1,6 +1,15 @@
-import { Alert, Button, StyleSheet, Text, View, Image, ImageBackground } from "react-native";
+import {
+  Alert,
+  Button,
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  ImageBackground,
+} from "react-native";
 import React, { useState } from "react";
 import { TextInput } from "react-native-gesture-handler";
+import { Icon } from "react-native-elements";
 
 //FIREBASE
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
@@ -10,26 +19,26 @@ export default function LoginScreen({ navigation }: any) {
   const [correo, setCorreo] = useState("");
   const [contrasenia, setContrasenia] = useState("");
 
+  const [showPassword, setShowPassword] = useState(false);
 
+  const showHiddenPassword = () => {
+    setShowPassword(!showPassword);
+  };
 
   function limpiar() {
     setCorreo("");
     setContrasenia("");
-
   }
-
 
   function login() {
     signInWithEmailAndPassword(auth, correo, contrasenia)
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
-        console.log("Inicio de sesión exitoso:", user);
-        Alert.alert('Mensaje', 'Inicio con exito')
-        navigation.navigate("Juego");
+        //console.log("Inicio de sesión exitoso:", user);
+        Alert.alert("Mensaje", "Inicio con exito");
+        navigation.navigate("Tabs");
         limpiar();
-
-    
       })
 
       .catch((error) => {
@@ -39,12 +48,15 @@ export default function LoginScreen({ navigation }: any) {
         console.log(errorMessage);
 
         switch (errorCode) {
-          case "Las credenciales son incorrectas":
-            Alert.alert("Error", "Las credenciales son incorrectas");
+          case "auth/invalid-email":
+            Alert.alert("Error", "Datos Invalidos, Ingrese credenciales");
             break;
-          case "La contraseña no se ha enviado":
-            Alert.alert("Error", "La contraseña no se ha enviado");
+          case "auth/missing-password":
+            Alert.alert("Error", "Ingrese la contraseña");
             break;
+            case "auth/invalid-credential":
+              Alert.alert("Error", "Credenciales Invalidas");
+              break;
           default:
             Alert.alert(errorCode, errorMessage);
             break;
@@ -53,13 +65,22 @@ export default function LoginScreen({ navigation }: any) {
   }
 
   return (
-    
     <View style={styles.container}>
       <ImageBackground
-       source={require("../assets/loginArana.jpg")} 
-      style={styles.backgroundImage} 
+        source={require("../assets/loginArana.jpg")}
+        style={styles.backgroundImage}
       />
-      <Text style={{ fontSize: 30, color:'blue', fontWeight:'bold', textAlign:'center', marginBottom:10  }}>Inicio de Sesión</Text>
+      <Text
+        style={{
+          fontSize: 30,
+          color: "blue",
+          fontWeight: "bold",
+          textAlign: "center",
+          marginBottom: 10,
+        }}
+      >
+        Inicio de Sesión
+      </Text>
 
       <TextInput
         placeholder="Ingrese correo"
@@ -67,16 +88,30 @@ export default function LoginScreen({ navigation }: any) {
         keyboardType="email-address"
         autoCapitalize="none"
         style={styles.input}
-
       />
       <TextInput
         placeholder="Ingresar contraseña"
         onChangeText={(texto) => setContrasenia(texto)}
-        secureTextEntry={!contrasenia}
+        secureTextEntry={!showPassword}
         style={styles.input}
-      />
+        />
+          <Icon
+            type="material-community"
+            name={showPassword ? "eye-off-outline" : "eye-outline"}
+            iconStyle={styles.icon}
+            onPress={showHiddenPassword}
+            
+          />
+        
+      
 
-      <Button  title="Ingresar" onPress={() => login()} />
+      <Button title="Ingresar" onPress={() => login()} />
+      <Text
+        onPress={() => navigation.navigate("Registro")}
+        style={styles.registroLink}
+      >
+        👉 Regístrate aquí 👈
+      </Text>
     </View>
   );
 }
@@ -84,39 +119,39 @@ export default function LoginScreen({ navigation }: any) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent:'center',
-    alignItems:'center'
+    justifyContent: "center",
+    alignItems: "center",
   },
   backgroundImage: {
     flex: 1,
     width: "100%",
-    height: "90%",
+    height: "80%",
     resizeMode: "cover",
     justifyContent: "center",
     alignItems: "center",
   },
+  inputContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center', // Centra los elementos horizontalmente
+    height: '100%', // Ajusta según sea necesario
+  },
 
   input: {
-    //width:'80%',
-    //borderWidth:1,
-    //height:45,
-    //marginBottom:10,
-    //borderRadius:10
     flexDirection: "row",
     alignItems: "center",
     width: "80%",
     borderWidth: 1,
-    height: 45,
-    marginBottom: 10,
+    height: 60,
+    marginBottom: 30,
     borderRadius: 10,
-    padding: 10,
-  },
-  passwordInput: {
-    flex: 1,
+    padding: 20,
   },
   icon: {
-    marginLeft: 10,
+   
+    marginLeft: 270,
     marginRight: 10,
+    marginTop: 10, // Mueve el ícono hacia arriba
   },
   btn: {
     width: "60%",
@@ -133,10 +168,16 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: "bold",
   },
-  Image:{
-    width:300,
-    height:200,
-    resizeMode:'contain'
-
-  }
-})
+  Image: {
+    width: 300,
+    height: 200,
+    resizeMode: "contain",
+  },
+  registroLink: {
+    fontSize: 30,
+    fontWeight: "bold",
+    marginTop: 10,
+    textDecorationLine: "underline",
+    color: "blue",
+  },
+});

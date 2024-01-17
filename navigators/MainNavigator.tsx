@@ -9,30 +9,34 @@ import WelcomeScreen from "../screens/WelcomeScreen";
 import { NavigationContainer } from "@react-navigation/native";
 import JuegoScreen from "../screens/JuegoScreen";
 import InformacionScreen from "../screens/InformacionScreen";
+import PerfilScreen from "../screens/PerfilScreen";
 
 const Tabs = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
 function MyTabs() {
   return (
-    <Tabs.Navigator screenOptions={{headerShown:false}}>
-      <Tabs.Screen name="Inicio Sesion" component={InicioSesionScreen} />
+    <Tabs.Navigator screenOptions={{ headerShown: false }}>
+      
+      <Tabs.Screen name="Perfil" component={PerfilScreen} />
       <Tabs.Screen name="Informacion" component={InformacionScreen} />
       <Tabs.Screen name="Puntaje" component={PuntajeScreen} />
-      <Tabs.Screen name="Registro" component={RegistroScreen} />
+      
     </Tabs.Navigator>
   );
 }
 
 function MyStack() {
   return (
-    <Stack.Navigator 
-    initialRouteName="Welcome"
-      screenOptions={{headerShown:false}}
-      >
+    <Stack.Navigator
+      initialRouteName="Welcome"
+      screenOptions={{ headerShown: false }}
+    >
       <Stack.Screen name="Tabs" component={MyTabs} />
       <Stack.Screen name="Welcome" component={WelcomeScreen} />
+      <Stack.Screen name="Inicio Sesion" component={InicioSesionScreen} />
       <Stack.Screen name="Juego" component={JuegoScreen} />
+      <Stack.Screen name="Registro" component={RegistroScreen} />
     </Stack.Navigator>
   );
 }

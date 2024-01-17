@@ -14,7 +14,7 @@ export default function WelcomeScreen({ navigation }: any) {
 
       <TouchableOpacity
         style={styles.btn}
-        onPress={() => navigation.navigate("Tabs")}
+        onPress={() => navigation.navigate("Inicio Sesion")}
       >
         <Text style={styles.txtBtn}>JUGAR</Text>
       </TouchableOpacity>

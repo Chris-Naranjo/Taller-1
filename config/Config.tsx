@@ -3,6 +3,7 @@ import { getAuth, initializeAuth } from 'firebase/auth'
 import { getDatabase } from 'firebase/database'
 import { getStorage } from 'firebase/storage'
 
+
 export const firebaseConfig = {
   apiKey: "AIzaSyB7anoBovdSNYNxohsWTYdTqnP5aRGTLvo",
   authDomain: "videojuegos3-886a8.firebaseapp.com",

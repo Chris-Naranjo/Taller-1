@@ -5,6 +5,8 @@ import { TextInput } from "react-native-gesture-handler";
 //FIREBASE
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../config/Config";
+import { getDatabase, ref, set } from "firebase/database";
+import { db } from '../config/Config';
 
 export default function RegistroScreen({ navigation }: any) {
   const [correo, setcorreo] = useState("");
@@ -12,25 +14,44 @@ export default function RegistroScreen({ navigation }: any) {
   const [nik, setNik] = useState("");
   const [edad, setEdad] = useState("");
 
+  const [userId, setuserId] = useState('')
+
   function registro() {
     createUserWithEmailAndPassword(auth, correo, contrasenia)
       .then((userCredential) => {
         // Signed up
         const user = userCredential.user;
-
+        Alert.alert("Registro Exitoso")
         navigation.navigate("Inicio Sesion");
-
+        setuserId(user.uid)
+        console.log(userId);
+        
         //console.log('Registro exitoso')
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
         // ..
-        console.log(errorCode);
+        //console.log(errorCode);
         if (errorCode === "auth/email-already-in-use") {
           Alert.alert("Error", "El correo ingresado ya esta en uso");
+        }else if ( errorCode=== 'auth/weak-password'){
+            Alert.alert("Error", "La contraseña debe poseer 6 caracteres")
         }
       });
+    }
+      function guardar (userId:string, correo: string, nick: string, edad: string) {
+        set(ref(db, 'jugadores/' + userId), {
+          nick: nick,
+          email: correo,
+          edad: edad
+        });
+      }
+    
+      function compuesta() {
+        registro();
+       // guardar(userID, nick, correo, edad)
+      
   }
 
   return (
@@ -64,7 +85,8 @@ export default function RegistroScreen({ navigation }: any) {
         style={styles.input}
       />
 
-      <Button title="registrarse" onPress={() => registro()} />
+<Button title='registrarse' onPress={() => compuesta()} />
+
    
     </View>
   );
