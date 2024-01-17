@@ -11,6 +11,7 @@ export default function LoginScreen({ navigation }: any) {
   const [contrasenia, setContrasenia] = useState("");
 
 
+
   function limpiar() {
     setCorreo("");
     setContrasenia("");
@@ -24,6 +25,7 @@ export default function LoginScreen({ navigation }: any) {
         // Signed in
         const user = userCredential.user;
         console.log("Inicio de sesión exitoso:", user);
+        Alert.alert('Mensaje', 'Inicio con exito')
         navigation.navigate("Juego");
         limpiar();
 
@@ -54,7 +56,7 @@ export default function LoginScreen({ navigation }: any) {
     
     <View style={styles.container}>
       <ImageBackground
-       source={require("../assets/Sesion2.png")} 
+       source={require("../assets/loginArana.jpg")} 
       style={styles.backgroundImage} 
       />
       <Text style={{ fontSize: 30, color:'blue', fontWeight:'bold', textAlign:'center', marginBottom:10  }}>Inicio de Sesión</Text>
@@ -65,8 +67,8 @@ export default function LoginScreen({ navigation }: any) {
         keyboardType="email-address"
         autoCapitalize="none"
         style={styles.input}
-      />
 
+      />
       <TextInput
         placeholder="Ingresar contraseña"
         onChangeText={(texto) => setContrasenia(texto)}
@@ -87,7 +89,7 @@ const styles = StyleSheet.create({
   },
   backgroundImage: {
     flex: 1,
-    width: "95%",
+    width: "100%",
     height: "90%",
     resizeMode: "cover",
     justifyContent: "center",

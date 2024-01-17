@@ -6,10 +6,10 @@ export default function WelcomeScreen({ navigation }: any) {
   return (
     <View style={styles.container}>
       <ImageBackground
-        source={require("../assets/fondoWelcome.jpg")}
+        source={require("../assets/inicioArana.jpg")}
         style={styles.backgroundImage}
       >
-      <Image source={require("../assets/inicioLetras.png")} style={styles.imgT} />
+      <Image source={require("../assets/inicioLetras3.png")} style={styles.imgT} />
         
 
       <TouchableOpacity
