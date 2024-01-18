@@ -110,7 +110,7 @@ export default function LoginScreen({ navigation }: any) {
         onPress={() => navigation.navigate("Registro")}
         style={styles.registroLink}
       >
-        👉 Regístrate aquí 👈
+        👮 Regístrate aquí 👮
       </Text>
     </View>
   );

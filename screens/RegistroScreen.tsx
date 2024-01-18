@@ -11,7 +11,7 @@ import { db } from '../config/Config';
 export default function RegistroScreen({ navigation }: any) {
   const [correo, setcorreo] = useState("");
   const [contrasenia, setContrasenia] = useState("");
-  const [nik, setNik] = useState("");
+  const [nick, setNik] = useState("");
   const [edad, setEdad] = useState("");
 
   const [userId, setuserId] = useState('')
@@ -25,6 +25,7 @@ export default function RegistroScreen({ navigation }: any) {
         navigation.navigate("Inicio Sesion");
         setuserId(user.uid)
         console.log(userId);
+        guardar(user.uid, nick, correo, edad)
         
         //console.log('Registro exitoso')
       })
@@ -42,8 +43,8 @@ export default function RegistroScreen({ navigation }: any) {
     }
       function guardar (userId:string, correo: string, nick: string, edad: string) {
         set(ref(db, 'jugadores/' + userId), {
-          nick: nick,
           email: correo,
+          nick: nick,
           edad: edad
         });
       }
