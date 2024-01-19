@@ -87,12 +87,14 @@ export default function LoginScreen({ navigation }: any) {
         onChangeText={(texto) => setCorreo(texto)}
         keyboardType="email-address"
         autoCapitalize="none"
+        value={correo}
         style={styles.input}
       />
       <TextInput
         placeholder="Ingresar contraseña"
         onChangeText={(texto) => setContrasenia(texto)}
         secureTextEntry={!showPassword}
+        value={contrasenia}
         style={styles.input}
         />
           <Icon

@@ -45,7 +45,8 @@ export default function RegistroScreen({ navigation }: any) {
         set(ref(db, 'jugadores/' + userId), {
           email: correo,
           nick: nick,
-          edad: edad
+          edad: edad,
+          url: "https://c0.klipartz.com/pngpicture/81/570/gratis-png-perfil-logo-iconos-de-computadora-usuario-usuario-thumbnail.png"
         });
       }
     
